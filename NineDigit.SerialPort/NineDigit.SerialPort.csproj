@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\CreateNuGetPackage.props" />
+    <Import Project="..\Versions.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>9.0</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>NineDigit.SerialPort</PackageId>
+        <Title>Serial Port</Title>
+        <Authors>Tomáš Peťovský</Authors>
+        <Company>Nine Digit, s.r.o.</Company>
+        <Version>$(Version)</Version>
+        <InformationalVersion>$(InformationalVersion)</InformationalVersion>
+        <PackageVersion>$(InformationalVersion)</PackageVersion>
+        <PackageReleaseNotes></PackageReleaseNotes>
+        <Description>Multiplatform Serial Port Device Scanner.</Description>
+        <PackageDescription>Multiplatform Serial Port Device Scanner.</PackageDescription>
+        <PackageTags>serial port device scanner</PackageTags>
+        <PackageProjectUrl>https://www.nuget.org/packages/NineDigit.SerialPort</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/ninedigit/SerialPort.git</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <IncludeSymbols>true</IncludeSymbols>
+        <Copyright>(c) 2023</Copyright>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Remove="NineDigit.SerialPort.xml" />
+        <None Include="$(SolutionDir)README.md" Pack="true" PackagePath="\">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="NineDigit.Mac.IOKit" Version="1.0.0" />
+      <PackageReference Include="System.Management" Version="6.0.0" />
+    </ItemGroup>
+
+</Project>
